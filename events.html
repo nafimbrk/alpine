@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <!-- <div
+      x-data="{ pesan: 'Hello World' }"
+      @log="alert('data telah terkirim oleh ' + $event.detail.nama)"
+      @click="alert('div diklik')"
+      class="container mx-auto w-3/4 text-center mt-10 bg-red-200 p-10 rounded-xl shadow"
+    > -->
+    <div
+      x-data="{ message: '' }"
+      @log="alert('data telah terkirim oleh ' + $event.detail.nama)"
+      class="container mx-auto w-3/4 text-center mt-10 bg-red-200 p-10 rounded-xl shadow"
+    >
+      <!-- <button
+    @click="console.dir($event.target.classList.add('bg-red-500'))"
+    id="tombolPesan"
+    data-pesan="Hello world"
+    class="py-2 px-5 bg-blue-400 text-white rounded-md"
+  >
+    Buka
+  </button> -->
+
+      <!-- <form action="/post" @submit.prevent="alert('data dikirim oleh alpine')"> -->
+      <label for="nama" class="text-sm font-medium text-gray-900 block mb-2"
+        >Masukkan Pesan</label
+      >
+      <!-- <input
+        type="text"
+        @keyup.shift.enter="alert('data terkirim')"
+        name=""
+        id=""
+        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      /> -->
+      <!-- <input
+        type="text"
+        @keyup.debounce.500ms="console.log($event.target.value)"
+        name=""
+        id=""
+        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      /> -->
+      <textarea
+        x-model="message"
+        type="text"
+        @keyup.debounce.500ms="console.log($event.target.value)"
+        name=""
+        id=""
+        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      ></textarea>
+      <span x-text="message.length" class="text-lg flex text-green-500 font-bold" :class="message.length > 20 ? 'text-red-500' : ''"></span>
+
+      <!-- <button
+      type="submit"
+      @click="$dispatch('log', { nama: 'Sandika' })"
+    class="py-2 px-5 bg-slate-500 text-white rounded-md mt-3"
+  > -->
+
+      <!-- <button
+      type="submit"
+    class="py-2 px-5 bg-slate-500 text-white rounded-md mt-3"
+  >
+    Kirim
+  </button> -->
+
+      <!-- <button
+        @click.stop="alert('button diklik')"
+        class="py-2 px-5 bg-slate-500 text-white rounded-md mt-3"
+      >
+        Kirim
+      </button> -->
+      <!-- </form> -->
+    </div>
+
+    <div
+      x-data="{ open: false }"
+      class="container mx-auto w-1/2 text-center mt-10 bg-lime-200 p-10 rounded-xl shadow"
+    >
+      <!-- <button
+        @click="open = !open"
+        x-text="open ? 'Tutup' : 'Buka'"
+        x-bind:class="open ? 'bg-cyan-600' : 'bg-slate-600'"
+        @keyup.esc.window="open = false"
+        class="py-2 px-5 text-white rounded-md"
+      >
+        Buka
+      </button> -->
+      <button
+        @click="open = !open"
+        x-text="open ? 'Tutup' : 'Buka'"
+        x-bind:class="open ? 'bg-cyan-600' : 'bg-slate-600'"
+        @click.outside="open = false"
+        @keyup.esc.window="open = false"
+        class="py-2 px-5 text-white rounded-md"
+      >
+        Buka
+      </button>
+      <div
+        x-show="open"
+        x-transition.origin.bottom.duration.1000ms
+        class="w-3/4 mx-auto mt-4 p-5 bg-blue-400 rounded text-white"
+      >
+        Lorem ipsum dolor sit amet.
+      </div>
+    </div>
+  </body>
+</html>
