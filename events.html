@@ -18,7 +18,7 @@
       class="container mx-auto w-3/4 text-center mt-10 bg-red-200 p-10 rounded-xl shadow"
     > -->
     <div
-      x-data="{ message: '' }"
+      x-data="{ message: '', open: true, hobby: [] }"
       @log="alert('data telah terkirim oleh ' + $event.detail.nama)"
       class="container mx-auto w-3/4 text-center mt-10 bg-red-200 p-10 rounded-xl shadow"
     >
@@ -58,6 +58,25 @@
         class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
       ></textarea>
       <span x-text="message.length" class="text-lg flex text-green-500 font-bold" :class="message.length > 20 ? 'text-red-500' : ''"></span>
+
+      <input type="checkbox" id="checkbox" x-model="open">
+      <label for="checkbox" x-text="!open ? 'kosong' : 'terisi'"></label>
+
+      <div class="mt-5">
+        <div class="flex items-center mb-2">
+          <input type="checkbox" x-model="hobby" class="w-4 h-4 text-blue-600 border-gray-300 rounded" name="" id="menulis" value="menulis">
+          <label for="menulis" class="ml-2 text-sm">menulis</label>
+        </div>
+        <div class="flex items-center mb-2">
+          <input type="checkbox" x-model="hobby" class="w-4 h-4 text-blue-600 border-gray-300 rounded" name="" id="menyanyi" value="menyanyi">
+          <label for="menyanyi" class="ml-2 text-sm">menyanyi</label>
+        </div>
+        <div class="flex items-center mb-2">
+          <input type="checkbox" x-model="hobby" class="w-4 h-4 text-blue-600 border-gray-300 rounded" name="" id="ngoding" value="ngoding">
+          <label for="ngoding" class="ml-2 text-sm">ngoding</label>
+        </div>
+        <p class="text-left text-sm">hobby: <span x-text="hobby.map(h => h.charAt(0).toUpperCase() + h.slice(1))"></span></p>
+      </div>
 
       <!-- <button
       type="submit"
